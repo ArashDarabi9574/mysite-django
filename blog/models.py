@@ -8,7 +8,7 @@ class Post(models.Model):
     content = models.TextField()
     # tag
     # category
-    content_view = models.IntegerField(default=0)
+    content_view=models.IntegerField(default=0)
     status = models.BooleanField(default=False)
     published_at = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
