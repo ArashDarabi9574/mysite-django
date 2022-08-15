@@ -5,8 +5,8 @@ from blog.models import Post
 class PostAdmin(admin.ModelAdmin):
      date_hierarchy = 'created_at'
      empty_date_hierarchy = 'empty'
-     list_display = ('title', 'content_view', 'status', 'published_at', 'created_at', 'updated_at')
-     list_filter  = ('status' ,)
+     list_display = ('title','author','content_view', 'status', 'published_at', 'created_at', 'updated_at')
+     list_filter  = ('status' ,'author')
      search_fields = ('title', 'content')
      class Meta:
           ordering = ['-created_at']
