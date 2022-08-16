@@ -4,7 +4,7 @@ from blog.models import Post
 
 
 def blog_view(response):
-    posts = Post.objects.filter(status=1)
+    posts = Post.objects.filter(published_at__lte=datetime.datetime.now())
     context = {'posts': posts}
     return render(response, 'blog/blog-home.html', context)
 
