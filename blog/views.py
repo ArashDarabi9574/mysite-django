@@ -2,6 +2,7 @@ import datetime
 from pickle import NONE
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 
 def blog_view(response, cat_name=None, author_username=None,):
@@ -10,6 +11,15 @@ def blog_view(response, cat_name=None, author_username=None,):
         posts = posts.filter(author__username=author_username)
     if cat_name:
         posts = posts.filter(category__name=cat_name)
+
+    posts = Paginator(posts, 3)
+    try:
+        page_num = response.GET.get('page')
+        posts = posts.get_page(page_num)
+    except EmptyPage:
+        posts = posts.get_page(1)
+    except PageNotAnInteger:
+        posts = posts.get_page(1)
     context = {'posts': posts}
     return render(response, 'blog/blog-home.html', context)
 
