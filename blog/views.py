@@ -1,10 +1,13 @@
 import datetime
+from pickle import NONE
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 
 
-def blog_view(response):
+def blog_view(response, cat_name=None):
     posts = Post.objects.filter(status=1)
+    if cat_name:
+        posts = posts.filter(category__name=cat_name)
     context = {'posts': posts}
     return render(response, 'blog/blog-home.html', context)
 
