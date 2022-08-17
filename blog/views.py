@@ -25,8 +25,10 @@ def blog_single_view(response, pid):
 
     return render(response, 'blog/blog-single.html', context)
 
-def blog_category(response, cat_name):
-    post = Post.objects.filter(status=1)
-    post = post.filter(category__name=cat_name)
-    context = {'posts': post}
+def search_view(response):
+    posts = Post.objects.filter(status=1)
+    if response.method == 'GET':
+        if s := response.GET.get('s'):
+            posts = posts.filter(content__contains=s)
+    context = {'posts': posts}
     return render(response, 'blog/blog-home.html', context)
