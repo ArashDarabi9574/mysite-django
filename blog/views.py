@@ -4,13 +4,13 @@ from blog.models import Post
 
 
 def blog_view(response):
-    posts = Post.objects.filter(published_at__lte=datetime.datetime.now())
+    posts = Post.objects.filter(status=1)
     context = {'posts': posts}
     return render(response, 'blog/blog-home.html', context)
 
 
 def blog_single_view(response, pid):
-    posts = Post.objects.filter(published_at__lte=datetime.datetime.now())
+    posts = Post.objects.filter(status=1)
     post = get_object_or_404(posts, pk=pid, status=1)
     post.content_view +=1
     post.save()
@@ -19,3 +19,9 @@ def blog_single_view(response, pid):
     context = {'post': post, 'nextpost': nextpost, 'prevpost': prevpost}
 
     return render(response, 'blog/blog-single.html', context)
+
+def blog_category(response, cat_name):
+    post = Post.objects.filter(status=1)
+    post = post.filter(category__name=cat_name)
+    context = {'posts': post}
+    return render(response, 'blog/blog-home.html', context)
