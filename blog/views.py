@@ -1,3 +1,4 @@
+from atexit import register
 import datetime
 from pickle import NONE
 from django.shortcuts import render, get_object_or_404

@@ -26,3 +26,9 @@ def postcategories():
     for name in categories:
         category_dict[name] = posts.filter(category=name).count()
     return {'categories': category_dict}
+
+
+@register.inclusion_tag('website/our-blog.html')
+def ourblog():
+    posts = Post.objects.filter(status=1).order_by('published_at')[:6]
+    return {'posts': posts}
