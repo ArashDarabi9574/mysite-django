@@ -27,7 +27,7 @@ def contact_view(response):
             fs= form.save(commit=False)
             fs.name= "uknown"
             fs.save()
-            messages.add_message(response, messages.SUCCESS,'your ticket success!')
+            messages.add_message(response, messages.SUCCESS,'successfully!')
         else:
             messages.add_message(response, messages.ERROR,'your ticket didnt submited!')
     form = ContactForm()

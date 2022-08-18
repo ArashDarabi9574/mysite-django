@@ -3,6 +3,7 @@
 <html lang="zxx" class="no-js">
 
 <head>
+
      <!-- Mobile Specific Meta -->
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <!-- Favicon-->
@@ -58,7 +59,8 @@
           <div class="container main-menu">
                <div class="row align-items-center justify-content-between d-flex">
                     <div id="logo">
-                         <a href="{% url 'website:index' %}"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+                         <a href="{% url 'website:index' %}"><img src="{% static 'img/logo.png' %}" alt=""
+                                   title="" /></a>
                     </div>
                     <nav id="nav-menu-container">
                          <ul class="nav-menu">
@@ -82,6 +84,12 @@
                     </nav><!-- #nav-menu-container -->
                </div>
           </div>
+
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %} m-2" id="msg" role="alert">{{ message|safe }}</div>
+          {% endfor %}
+          {% endif %}
      </header><!-- #header -->
      {% block content %}
 
@@ -134,15 +142,15 @@
                                    graphic output.
                               </p>
                               <div>
-                                   <form
-                                        action="{% url 'website:newsletter' %}"
-                                        method="post" class="subscription relative">
+                                   <form action="{% url 'website:newsletter' %}" method="post"
+                                        class="subscription relative">
                                         {% csrf_token %}
                                         <div class="input-group d-flex flex-row">
                                              <input name="email" placeholder="Email Address"
                                                   onfocus="this.placeholder = ''"
                                                   onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                             <button class="btn bb-btn" type="submit"><span class="lnr lnr-location"></span></button>
+                                             <button class="btn bb-btn" type="submit"><span
+                                                       class="lnr lnr-location"></span></button>
                                         </div>
                                         <div class="mt-10 info"></div>
                                    </form>
@@ -181,6 +189,7 @@
                          <a href="#"><i class="fa fa-dribbble"></i></a>
                          <a href="#"><i class="fa fa-behance"></i></a>
                     </div>
+
                </div>
           </div>
      </footer>
@@ -200,6 +209,13 @@
      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
      <script src="{% static 'js/mail-script.js' %}"></script>
      <script src="{% static 'js/main.js' %}"></script>
+     <script>
+          setTimeout(function () {
+               if ($('#msg').length > 0) {
+                    $('#msg').remove();
+               }
+          }, 2000);
+     </script>
 </body>
 
 </html>
