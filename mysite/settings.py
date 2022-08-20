@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'taggit',
     'django_summernote',
     'captcha',
-    'blog'
+    'blog',
+    'accounts'
 ]
 
 SITE_ID = 2
