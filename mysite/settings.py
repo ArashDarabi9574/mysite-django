@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'robots',
     'taggit',
     'django_summernote',
+    'captcha',
     'blog'
 ]
 

@@ -13,3 +13,5 @@ six==1.16.0
 sqlparse==0.4.2
 toml==0.10.2
 webencodings==0.5.1
+django-simple-captcha==0.5.17
+django-ranged-response==0.2.0
