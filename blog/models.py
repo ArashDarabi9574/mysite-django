@@ -3,7 +3,9 @@ from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
- 
+from taggit.managers import TaggableManager
+
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
@@ -16,7 +18,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
-    # tag
+    tags = TaggableManager()
     category = models.ManyToManyField(Category)
     content_view = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
@@ -28,4 +30,4 @@ class Post(models.Model):
         return "{} - {}" .format(self.title, self.id)
 
     def get_absolute_url(self):
-        return reverse('blog:single', kwargs={'pid':self.id})
+        return reverse('blog:single', kwargs={'pid': self.id})
