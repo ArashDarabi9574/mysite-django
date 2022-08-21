@@ -1,4 +1,4 @@
-{% load static %}}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -44,9 +44,10 @@
                               <ul>
                                    {% if request.user.is_authenticated %}
                                    <li><a href="#">logged in as {{request.user.username}}</a></li>
+                                   <li><a href="{% url 'accounts:logout' %}">logout</a></li>
                                    {% else %}
                                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                                   <li><a href="#">Signup</a></li>
+                                   <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
                                    {% endif %}
                               </ul>
                          </div>
