@@ -25,7 +25,6 @@ sitemaps = {
     'blog' : BlogSitemap
 }
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
